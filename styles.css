@@ -1,7 +1,6 @@
 * {
   padding: 0px;
   margin: 0px;
-  box-sizing: border-box;
 }
 
 body {
@@ -10,25 +9,28 @@ body {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  box-sizing: content-box;
 }
 
 .divContainer {
   display: flex;
   flex-wrap: wrap;
+  border-radius: 120px;
+  border-width: 100px;
+  border-color: tomato;
+  border-style: solid;
   height: 960px;
   width: 960px;
-  border-style: solid;
-  border-color: tomato;
-  border-radius: 50px;
-  border-width: 120px;
-  overflow: hidden;
   box-shadow: 20px 20px 30px 10px slategray;
+  box-sizing: content-box;
 }
 
 .children {
   flex-grow: 1, 1, 0;
-  border-style: solid;
-  border-color: gray;
+  border-style: none;
+  border-color: grey;
+  background-color: lightgrey;
   height: 60px;
   width: 60px;
+  box-sizing: border-box;
 }
