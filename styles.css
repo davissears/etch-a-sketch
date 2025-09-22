@@ -1,1 +1,34 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
 
+body {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.divContainer {
+  display: flex;
+  flex-wrap: wrap;
+  height: 960px;
+  width: 960px;
+  border-style: solid;
+  border-color: tomato;
+  border-radius: 50px;
+  border-width: 120px;
+  overflow: hidden;
+  box-shadow: 20px 20px 30px 10px slategray;
+}
+
+.children {
+  flex-grow: 1, 1, 0;
+  border-style: solid;
+  border-color: gray;
+  height: 60px;
+  width: 60px;
+}
