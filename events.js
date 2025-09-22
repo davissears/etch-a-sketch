@@ -21,4 +21,8 @@ for (let i = 0; i < 256; i++) {
   // creates unique ID's for each childDiv
   childDiv.id = `child-div-${i + 1}`;
   //listens for mouseover event
+  childDiv.addEventListener("mouseover", (e) => {
+    //changes backgroundColor on mouseover
+    e.target.style.backgroundColor = "black";
+  });
 }
