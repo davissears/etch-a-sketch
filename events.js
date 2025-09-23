@@ -26,3 +26,24 @@ for (let i = 0; i < 256; i++) {
     e.target.style.backgroundColor = "black";
   });
 }
+
+//* Components
+
+//* modals
+//* 1. get reference
+//button reference
+const detail = document.getElementById("detailButton");
+const closeModalButton = document.getElementById("modalClose");
+// .modalContainer reference
+openModal = document.getElementById("detail-modal");
+
+//2. open modalContainer
+detail.addEventListener("click", () => {
+  // add modalContainerOpen class
+  openModal.classList.add("modalContainerOpen");
+});
+//close ModalContainer
+closeModalButton.addEventListener("click", () => {
+  //remove modalContainerClose class
+  openModal.classList.remove("modalContainerOpen");
+});
