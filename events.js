@@ -34,9 +34,7 @@ let sketchColor = defaultColor;
 // randomColor.onclick = () => {
 //   sameGender = "cute";
 // };
-randomColor.addEventListener("click", () => {
-  sameGender = "cute";
-});
+
 //* populates children in container
 function populateGrid(size) {
   //accepts value of detail <input> as a parameter
@@ -81,22 +79,11 @@ function populateGrid(size) {
 
 //
 
-function randomColorize() {
-  //function call
-  //* random-Color
-  //calls function that removes old container children and adds new children
-
-  randomColor.style.visibility = "hidden";
+randomColor.addEventListener("click", () => {
+  sameGender = "cute";
   openModal.classList.remove("modalContainerOpen");
-  const unrandomButton = document.createElement("button");
-  openModal.append(unrandomButton);
-
-  childDiv.addEventListener("mouseover", (e) => {
-    //changes backgroundColor on mouseover
-    e.target.style.backgroundColor = `rgb(${rColor}, ${gColor}, ${bColor})`;
-  });
-  // });
-}
+  populateGrid(inputValue.value);
+});
 
 detail.addEventListener("click", () => {
   // add modalContainerOpen class
