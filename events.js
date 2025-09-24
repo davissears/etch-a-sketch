@@ -1,18 +1,52 @@
+//* modals
+//* 1. get reference
+//open detail modal button reference
+const detail = document.getElementById("detailButton");
+//close detail modal button reference
+const closeModalButton = document.getElementById("modalClose");
+// .modalContainer reference
+openModal = document.getElementById("detail-modal");
 //* grid container
 const parentContainer = document.getElementById("parent-Container");
 //* values for handling 'detail' input
 const inputValue = document.getElementById("detailValue"); // gets detail <input>
 let size = inputValue.value; // references detail <input> value
+const childDiv = document.createElement("div");
 
+const randomColor = document.getElementById("random-Color-Button");
+const childs = document.getElementsByClassName("children");
+// *listens for mouseover event
+// randomColor.addEventListener("click", () => {
+//random rgb value declarations
+function gay() {
+  const min = 0;
+  const max = 255;
+  let rColor = Math.random() * (max - min) + min;
+  let gColor = Math.random() * (max - min) + min;
+  let bColor = Math.random() * (max - min) + min;
+  let RGBValue = `rgb(${rColor}, ${gColor}, ${bColor})`;
+  return RGBValue;
+}
+
+let sameGender;
+let defaultColor = "black";
+let sketchColor = defaultColor;
+// randomColor.onclick = () => {
+//   sameGender = "cute";
+// };
+randomColor.addEventListener("click", () => {
+  sameGender = "cute";
+});
 //* populates children in container
 function populateGrid(size) {
   //accepts value of detail <input> as a parameter
   parentContainer.innerHTML = ""; // removes children in container
   const resolution = size * size; // declares variable for number of child elements
   //loops until number of children is met
+
   for (let i = 0; i < resolution; i++) {
-    // creates 1 child for each loop iteration
     const childDiv = document.createElement("div");
+    // creates 1 child for each loop iteration
     // sets attributes for each childDiv
     childDiv.setAttribute(
       "style",
@@ -25,29 +59,45 @@ function populateGrid(size) {
     childDiv.className = "children";
     // creates unique ID's for each childDiv
     childDiv.id = `child-div-${i + 1}`;
-    //listens for mouseover event
-    childDiv.addEventListener("mouseover", (e) => {
-      //changes backgroundColor on mouseover
-      e.target.style.backgroundColor = "black";
-    });
+    function sketch(sameGender) {
+      childDiv.addEventListener("mouseover", (e) => {
+        if (sameGender === "cute") {
+          e.target.style.backgroundColor = gay();
+        } else {
+          e.target.style.backgroundColor = "black";
+        }
+      });
+    }
+    // function makeItSlay(sameGender) {
+    //   if (sameGender === "cute") {
+    //     defaultColor = gay();
+    //   } else {
+    //     return;
+    //   }
+    // }
+    sketch(sameGender);
   }
 }
-//function call
-populateGrid(size);
-//*for loop parameters
 
-//* Components
+//
 
-//* modals
-//* 1. get reference
-//open detail modal button reference
-const detail = document.getElementById("detailButton");
-//close detail modal button reference
-const closeModalButton = document.getElementById("modalClose");
-// .modalContainer reference
-openModal = document.getElementById("detail-modal");
+function randomColorize() {
+  //function call
+  //* random-Color
+  //calls function that removes old container children and adds new children
 
-//2. open modalContainer
+  randomColor.style.visibility = "hidden";
+  openModal.classList.remove("modalContainerOpen");
+  const unrandomButton = document.createElement("button");
+  openModal.append(unrandomButton);
+
+  childDiv.addEventListener("mouseover", (e) => {
+    //changes backgroundColor on mouseover
+    e.target.style.backgroundColor = `rgb(${rColor}, ${gColor}, ${bColor})`;
+  });
+  // });
+}
+
 detail.addEventListener("click", () => {
   // add modalContainerOpen class
   openModal.classList.add("modalContainerOpen");
@@ -56,6 +106,6 @@ detail.addEventListener("click", () => {
 closeModalButton.addEventListener("click", () => {
   //removes class making modal visible
   openModal.classList.remove("modalContainerOpen");
-  //calls function that removes old container children and adds new children
   populateGrid(inputValue.value); // populate function w/ new detail InputValue
 });
+populateGrid(size);
