@@ -15,7 +15,8 @@ let size = inputValue.value;
 const randomColor = document.getElementById("random-Color-Button");
 const opacityModeButton = document.getElementById("opacity-Mode");
 
-let colorMode; // determines if the color is random or black
+let colorMode;
+let monoButton;
 
 //random rgb value declarations
 function getRandomColor() {
@@ -68,17 +69,26 @@ function populateGrid(size) {
 // random color mode
 randomColor.addEventListener("click", () => {
   colorMode = "random";
-  openModal.classList.remove("modalContainerOpen");
+  randomColor.style.display = "none";
   populateGrid(inputValue.value);
   // add Monocolor button
-  randomColor.style.display = "none";
+  // randomColor.style.display = "none";
   addMonoButton = document.createElement("button");
   addMonoButton.setAttribute("id", "mono-Button");
   openModal.appendChild(addMonoButton);
-  monoButton = document.getElementById("mono-Button");
-  monoButton.textContent = "Monocolor";
+  addMonoButton.textContent = "Monocolor";
+  addMonoButton.className = "modalButton";
+  addMonoButton.addEventListener("click", () => {
+    monoButton = document.getElementById("mono-Button");
+    colorMode = undefined; // reset to default black mode
+    populateGrid(inputValue.value);
+    monoButton.style.display = "none";
+    randomColor.style.display = "inline-block";
+    monoButton;
+  });
 });
-//
+
+// Detail button click event
 detail.addEventListener("click", () => {
   openModal.classList.add("modalContainerOpen");
 });
