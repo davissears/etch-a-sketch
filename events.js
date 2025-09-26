@@ -4,18 +4,18 @@ const detail = document.getElementById("detailButton");
 const closeModalButton = document.getElementById("modalClose");
 const openModal = document.getElementById("detail-modal");
 
-//* grid container
+// grid container
 const parentContainer = document.getElementById("parent-Container");
 
-//* values for handling 'detail' input
+// values for handling detail input
 const inputValue = document.getElementById("detailValue");
 let size = inputValue.value;
 
-//* buttons
+// buttons
 const randomColor = document.getElementById("random-Color-Button");
 const opacityModeButton = document.getElementById("opacity-Mode");
 
-let sameGender; // This will determine if the color is random or black
+let colorMode; // determines if the color is random or black
 
 //random rgb value declarations
 function getRandomColor() {
@@ -44,8 +44,8 @@ function populateGrid(size) {
     childDiv.id = `child-div-${i + 1}`;
 
     if (isOpacityMode) {
-      childDiv.style.backgroundColor = "black";
-      childDiv.style.opacity = 0; 
+      childDiv.style.backgroundColor = "black"; // Start with a black background
+      childDiv.style.opacity = 0; // Start with 0 opacity
       childDiv.addEventListener("mouseover", () => {
         let currentOpacity = parseFloat(childDiv.style.opacity);
         if (currentOpacity < 1) {
@@ -54,7 +54,7 @@ function populateGrid(size) {
       });
     } else {
       childDiv.addEventListener("mouseover", (e) => {
-        if (sameGender === "cute") {
+        if (colorMode === "random") {
           e.target.style.backgroundColor = getRandomColor();
         } else {
           e.target.style.backgroundColor = "black";
@@ -64,12 +64,21 @@ function populateGrid(size) {
   }
 }
 
+//* Listeners
+// random color mode
 randomColor.addEventListener("click", () => {
-  sameGender = "cute";
+  colorMode = "random";
   openModal.classList.remove("modalContainerOpen");
   populateGrid(inputValue.value);
+  // add Monocolor button
+  randomColor.style.display = "none";
+  addMonoButton = document.createElement("button");
+  addMonoButton.setAttribute("id", "mono-Button");
+  openModal.appendChild(addMonoButton);
+  monoButton = document.getElementById("mono-Button");
+  monoButton.textContent = "Monocolor";
 });
-
+//
 detail.addEventListener("click", () => {
   openModal.classList.add("modalContainerOpen");
 });
@@ -77,7 +86,7 @@ detail.addEventListener("click", () => {
 closeModalButton.addEventListener("click", () => {
   openModal.classList.remove("modalContainerOpen");
   // Reset to default color mode when closing, unless you want it to persist
-  sameGender = undefined; 
+  colorMode = undefined;
   populateGrid(inputValue.value);
 });
 
