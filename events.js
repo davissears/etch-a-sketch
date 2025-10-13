@@ -99,8 +99,6 @@ detail.addEventListener("click", () => {
 
 closeModalButton.addEventListener("click", () => {
 	openModal.classList.remove("modalContainerOpen");
-	// Reset to default color mode when closing, unless you want it to persist
-	colorMode = undefined;
 	populateGrid(inputValue.value);
 });
 
