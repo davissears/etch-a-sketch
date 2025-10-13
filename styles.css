@@ -1,57 +1,57 @@
 * {
-  padding: 0px;
-  margin: 0px;
-  box-sizing: border-box;
+	padding: 0px;
+	margin: 0px;
+	box-sizing: border-box;
 }
 
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
 }
 
 .divContainer {
-  display: flex;
-  flex-wrap: wrap;
-  height: 960px;
-  width: 960px;
-  box-sizing: border-box;
+	display: flex;
+	flex-wrap: wrap;
+	height: 960px;
+	width: 960px;
+	box-sizing: border-box;
 }
 
 .children {
-  background-color: lightgray;
+	background-color: lightgray;
 }
 .modalContainer {
-  position: fixed;
-  opacity: 0;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: -1;
+	position: fixed;
+	opacity: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: -1;
 }
 
 .modalContainerOpen {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-style: solid;
-  border-radius: 30px;
-  border-width: 30px;
-  border-color: tomato;
-  opacity: 1;
-  z-index: 999;
-  background-color: lightgrey;
-  width: fit-content;
-  height: fit-content;
-  padding: 10px;
-  margin-right: auto;
-  margin-left: auto;
-  margin-top: 8%;
-  margin-bottom: auto;
-  outline: 5px solid white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-style: solid;
+	border-radius: 30px;
+	border-width: 30px;
+	border-color: tomato;
+	opacity: 1;
+	z-index: 999;
+	background-color: lightgrey;
+	width: fit-content;
+	height: fit-content;
+	padding: 10px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 8%;
+	margin-bottom: auto;
+	outline: 5px solid white;
 }
