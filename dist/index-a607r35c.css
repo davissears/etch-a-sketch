@@ -1,0 +1,53 @@
+/* styles.css */
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.divContainer {
+	display: flex;
+	box-sizing: border-box;
+	flex-wrap: wrap;
+	width: 960px;
+	height: 960px;
+}
+
+.children {
+	background-color: #d3d3d3;
+}
+
+.modalContainer {
+	position: fixed;
+	opacity: 0;
+	display: flex;
+	z-index: -1;
+	justify-content: center;
+	align-items: center;
+	inset: 0;
+}
+
+.modalContainerOpen {
+	display: flex;
+	opacity: 1;
+	z-index: 999;
+	outline: 5px solid #fff;
+	background-color: #d3d3d3;
+	border: 30px solid tomato;
+	border-radius: 30px;
+	justify-content: center;
+	align-items: center;
+
+	width: fit-content;
+
+	height: fit-content;
+	margin: 8% auto auto;
+	padding: 10px;
+}

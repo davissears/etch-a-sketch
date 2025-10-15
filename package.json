@@ -2,6 +2,7 @@
 	"name": "etch-a-sketch",
 	"private": true,
 	"scripts": {
-		"start": "bun run serve.js"
+		"start": "bun run serve.js",
+		"build": "bun build ./index.html ./index.js ./events.js ./styles.css --outdir ./dist"
 	}
 }

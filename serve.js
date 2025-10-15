@@ -2,7 +2,7 @@ const server = Bun.serve({
 	port: 3000,
 	async fetch(request) {
 		const url = new URL(request.url);
-		const filePath = `./${url.pathname === "/" ? "index.html" : url.pathname}`;
+		const filePath = `./dist${url.pathname === "/" ? "/index.html" : url.pathname}`;
 
 		try {
 			const file = Bun.file(filePath);
@@ -13,4 +13,4 @@ const server = Bun.serve({
 	},
 });
 
-console.log(`Serving files from . on http://localhost:${server.port}`);
+console.log(`Serving files from ./dist on http://localhost:${server.port}`);
