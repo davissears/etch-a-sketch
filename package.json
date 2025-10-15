@@ -1,0 +1,7 @@
+{
+	"name": "etch-a-sketch",
+	"private": true,
+	"scripts": {
+		"start": "bun run serve.js"
+	}
+}
