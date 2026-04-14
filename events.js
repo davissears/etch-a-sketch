@@ -16,7 +16,6 @@ const randomColor = document.getElementById("random-Color-Button");
 const opacityModeButton = document.getElementById("opacity-Mode");
 
 let colorMode;
-let monoButton;
 
 //random rgb value declarations
 function getRandomColor() {
@@ -51,45 +50,50 @@ function populateGrid(size) {
 		if (isOpacityMode) {
 			childDiv.style.backgroundColor = "black"; // Start with a black background
 			childDiv.style.opacity = 0; // Start with 0 opacity
-			childDiv.addEventListener("mouseover", () => {
-				const currentOpacity = parseFloat(childDiv.style.opacity);
-				if (currentOpacity < 1) {
-					childDiv.style.opacity = currentOpacity + 0.1;
-				}
-			});
-		} else {
-			childDiv.addEventListener("mouseover", (e) => {
-				if (colorMode === "random") {
-					e.target.style.backgroundColor = getRandomColor();
-				} else {
-					e.target.style.backgroundColor = "black";
-				}
-			});
 		}
 	}
 }
+
+// Single delegated listener on the container — no per-cell listeners to leak
+parentContainer.addEventListener("mouseover", (e) => {
+	const target = e.target;
+	if (!target.classList.contains("children")) return;
+
+	if (opacityModeButton.checked) {
+		const currentOpacity = parseFloat(target.style.opacity);
+		if (currentOpacity < 1) {
+			target.style.opacity = currentOpacity + 0.1;
+		}
+	} else {
+		if (colorMode === "random") {
+			target.style.backgroundColor = getRandomColor();
+		} else {
+			target.style.backgroundColor = "black";
+		}
+	}
+});
+
+// Create mono button once; toggle visibility instead of recreating it on every click
+const addMonoButton = document.createElement("button");
+addMonoButton.setAttribute("id", "mono-Button");
+addMonoButton.textContent = "Monocolor";
+addMonoButton.className = "modalButton";
+addMonoButton.style.display = "none";
+openModal.appendChild(addMonoButton);
+addMonoButton.addEventListener("click", () => {
+	colorMode = undefined; // reset to default black mode
+	populateGrid(inputValue.value);
+	addMonoButton.style.display = "none";
+	randomColor.style.display = "inline-block";
+});
 
 //* Listeners
 // random color mode
 randomColor.addEventListener("click", () => {
 	colorMode = "random";
 	randomColor.style.display = "none";
+	addMonoButton.style.display = "inline-block";
 	populateGrid(inputValue.value);
-	// add Monocolor button
-	// randomColor.style.display = "none";
-	addMonoButton = document.createElement("button");
-	addMonoButton.setAttribute("id", "mono-Button");
-	openModal.appendChild(addMonoButton);
-	addMonoButton.textContent = "Monocolor";
-	addMonoButton.className = "modalButton";
-	addMonoButton.addEventListener("click", () => {
-		monoButton = document.getElementById("mono-Button");
-		colorMode = undefined; // reset to default black mode
-		populateGrid(inputValue.value);
-		monoButton.style.display = "none";
-		randomColor.style.display = "inline-block";
-		monoButton;
-	});
 });
 
 // Detail button click event
